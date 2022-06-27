@@ -113,16 +113,18 @@ node.appendChild(span);
   }
 
 
-    if(navigator.onLine) {
+  // window.addEventListener("load", () => {
+  //   if(navigator.onLine) {
      
-      result.innerHTML = `<div class="alert alert-success">Internet connection  available.Proceeed with your search<div>` 
-      document.getElementById("search-btn").style.display = 'block';
+  //     result.innerHTML = `<div class="alert alert-success">Internet connection  available.Proceeed with your search<div>` 
+  //     document.getElementById("search-btn").style.display = 'block';
 
-     } else {
-       result.innerHTML = `<div class="alert alert-danger">Oops! You're offline. Please check your network connection...<div>`;
-       document.getElementById("search-btn").style.display = 'none';
+  //    } else {
+  //      result.innerHTML = `<div class="alert alert-danger">Oops! You're offline. Please check your network connection...<div>`;
+  //      document.getElementById("search-btn").style.display = 'none';
 
-     }
+  //    }
+  // })
 
 
   
