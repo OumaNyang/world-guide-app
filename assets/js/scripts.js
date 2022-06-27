@@ -113,7 +113,6 @@ node.appendChild(span);
   }
 
 
-  window.addEventListener("load", () => {
     if(navigator.onLine) {
      
       result.innerHTML = `<div class="alert alert-success">Internet connection  available.Proceeed with your search<div>` 
@@ -124,7 +123,6 @@ node.appendChild(span);
        document.getElementById("search-btn").style.display = 'none';
 
      }
-  })
 
 
   
