@@ -16,9 +16,11 @@
   font-family: "Poppins", sans-serif;
 }
 body {
+  background-image: url('../images/defefrvthr6646dete.jpg');
+ background-repeat: no-repeat;
 
-background-color: #0e6596;
-/* background-image:linear-gradient(337deg, #0e6596 0%, #22e0b6 24%, #e0cece 49%, #2bb9d6 75%, #1bda4b 100%);*/
+/* 
+background-color: #00B5E2;*/
 }
 .main-container {
 background-color: #ffffff; 
@@ -42,7 +44,7 @@ background-color: #ffffff;
 }
 .search-wrapper button {
   font-size: 1em;
-  background-color: #0e6596;
+  background-color: #00B5E2;
   color: #ffffff;
   padding: 0.8em 0;
   border: none;
@@ -66,14 +68,6 @@ background-color: #ffffff;
   margin: 1.8em auto 1.2em auto;
 }
 
-.main-container h2 {
-  font-weight: 600;
-  color: #222a43;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 1.8em;
-}
 .data-wrapper {
   margin-bottom: 1em;
   letter-spacing: 0.3px;
