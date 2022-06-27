@@ -7,9 +7,14 @@
 * Open Project Licensed under MIT
 
 */
+
 let searchBtn = document.getElementById("search-btn");
 let countryInp = document.getElementById("country-inp");
 searchBtn.addEventListener("click", () => {
+    document.getElementById("loader").classList.add('loader');
+    document.getElementById("search-btn").style.display = 'none';
+;
+
   let countryName = countryInp.value;
   let finalURL = `https://restcountries.com/v3.1/name/${countryName}?fullText=true`;
   
@@ -17,69 +22,81 @@ searchBtn.addEventListener("click", () => {
   fetch(finalURL)
     .then((response) => response.json())
     .then((data) => {
-    
-      result.innerHTML = `
-        <img src="${data[0].flags.svg}" class="flag-img">
-        <h2>${data[0].name.common}</h2>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Capital:</h4>
-                <span>${data[0].capital[0]}</span>
-            </div>
-        </div>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Continent:</h4>
-                <span>${data[0].continents[0]}</span>
-            </div>
-        </div>
-         <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Population:</h4>
-                <span>${data[0].population}</span>
-            </div>
-        </div>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Currency:</h4>
-                <span>${
-                  data[0].currencies[Object.keys(data[0].currencies)].name
-                } - ${Object.keys(data[0].currencies)[0]}</span>
-            </div>
-        </div>
-         <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Common Languages:</h4>
-                <span>${Object.values(data[0].languages)
-                  .toString()
-                  .split(",")
-                  .join(", ")}</span>
-            </div>
-            <button onclick="addFavourite()" class="btn-favourite">Add to Favourite</button>
-        </div>
-      `;
+        document.getElementById("loader").classList.remove('loader');
+        document.getElementById("search-btn").style.display = 'block';
 
-   
+      result.innerHTML = `
+      <table class="table table-sm table-bordered table-striped">
+    <tr>
+        <td class="text-center" colspan="2">${data[0].name.common}</td>
+      </tr>
+    <tr>
+        <td class="text-center" colspan="2"><img src="${data[0].flags.svg}" class="flag-img"></td>
+      </tr>
+    <tr>
+        <td>Capital</td>
+        <td>${data[0].capital[0]}</td>
+      </tr>
+      <tr>
+        <td>Continent</td>
+        <td>${data[0].continents[0]}</td>
+      </tr>
+       <tr>
+        <td>Population</td>
+        <td>${data[0].population}</td>
+      </tr>
+       <tr>
+        <td>Currency</td>
+        <td>${
+  data[0].currencies[Object.keys(data[0].currencies)].name
+} - ${Object.keys(data[0].currencies)[0]}</td>
+       </tr>
+       <tr>
+        <td>Common Languages</td>
+        <td>${Object.values(data[0].languages)
+  .toString()
+  .split(",")
+  .join(", ")}</td>
+        </tr>
+        <tr>
+        <td>Currency</td>
+     <td> </td>
+       <tr>
+        <td>Currency</td>
+        <td>2</td>
+      </tr>
+        <tr>
+        <td class="text-center" colspan="2"><button onclick="addFavourite(${data[0].name.common})" class="btn btn-sm btn-success rounded-0">Add Favourite</button></td>
+      </tr>
+  </table> `;
     })
     .catch(() => {
       if (countryName.length == 0) {
-        result.innerHTML = `<span class="alert alert-danger">The input field cannot be empty</span>`;
+        document.getElementById("loader").classList.remove('loader');
+        document.getElementById("search-btn").style.display = 'block';
+      setTimeout(() => {  result.innerHTML = `<div class="alert alert-danger">The input field cannot be empty</div>`}, 3000);
       } else {
-        result.innerHTML = `<span class="alert alert-danger">Please enter a valid country name.<span>`;
+        document.getElementById("loader").classList.remove('loader');
+        document.getElementById("search-btn").style.display = 'block';
+       setTimeout(() => {   result.innerHTML = `<div class="alert alert-danger">Please enter a valid country name or check your internet connection<div>` }, 3000);
       }
     });
 });
 
-function addFavourite(){
-  document.getElementById("fav-alert").innerHTML = "<br><br><span class='alert alert-success'>Country added to favourite <span>";
+let countryName;
+function addFavourite(countryName){
+
+let favContainer =  document.getElementById('favList')
+//const heading_text = document.createTextNode("Kenya");
+
+favContainer.appendChild(countryName);
+
+//alert(' Hi there' );
 
 }
 
+// window.addEventListener("load", () => {
 
-// let addFavourite = document.getElementsByClassName("btn-favourite");
+//     addFavourite()
 
-// function displayMessage(){
-//   
-// }   
-
-// addFavourite.addEventListener("click", displayMessage);
+// });
